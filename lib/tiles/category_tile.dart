@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:virtual_store_flutter_app/screens/category_screen.dart';
 
 class CategoryTile extends StatelessWidget {
   final DocumentSnapshot snapshot;
@@ -19,7 +20,9 @@ class CategoryTile extends StatelessWidget {
       //seta na direita
       trailing: Icon(Icons.keyboard_arrow_right),
       onTap: (){
-
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context)=>CategoryScreen(snapshot)
+        ));
       },
     );
   }
