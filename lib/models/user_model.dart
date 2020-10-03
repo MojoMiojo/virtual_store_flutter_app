@@ -38,11 +38,12 @@ class UserModel extends Model{
       firebaseUser = user;
 
       await _saveUserData(userData);
-      
+
       onSuccess();
       end();
     }).catchError((e){
       onFail();
+      print(e);
       end();
     });
   }
