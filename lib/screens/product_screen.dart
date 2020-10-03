@@ -32,7 +32,7 @@ class _ProductScreenState extends State<ProductScreen> {
             aspectRatio: 0.9,
             //Carrosel de imagens
             child: Carousel(
-              images: product.images.map((url){
+              images: product.images.map((url) {
                 return NetworkImage(url);
               }).toList(),
               //tamanho do ponto
@@ -68,7 +68,9 @@ class _ProductScreenState extends State<ProductScreen> {
                     color: primaryColor,
                   ),
                 ),
-                SizedBox(height: 16,),
+                SizedBox(
+                  height: 16,
+                ),
                 Text(
                   "Tamanho",
                   style: TextStyle(
@@ -89,19 +91,20 @@ class _ProductScreenState extends State<ProductScreen> {
                     ),
                     children: product.sizes.map((s) {
                       return GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           setState(() {
                             size = s;
                           });
                         },
                         child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(4)),
-                            border: Border.all(
-                              color: s == size ? primaryColor : Colors.grey[500],
-                              width: 3,
-                            )
-                          ),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(4)),
+                              border: Border.all(
+                                color:
+                                    s == size ? primaryColor : Colors.grey[500],
+                                width: 3,
+                              )),
                           width: 50,
                           alignment: Alignment.center,
                           child: Text(s),
@@ -110,6 +113,37 @@ class _ProductScreenState extends State<ProductScreen> {
                     }).toList(),
                   ),
                 ),
+                SizedBox(
+                  height: 16,
+                ),
+                SizedBox(
+                  height: 44,
+                  child: RaisedButton(
+                    onPressed: size != null ? () {} : null,
+                    child: Text(
+                      "Adicionar ao Carrinho",
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                    color: primaryColor,
+                    textColor: Colors.white,
+                  ),
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                Text(
+                  "Descrição",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                Text(
+                  product.description,
+                  style: TextStyle(fontSize: 16),
+                )
               ],
             ),
           )
