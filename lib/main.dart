@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:virtual_store_flutter_app/models/user_model.dart';
 import 'package:virtual_store_flutter_app/screens/home_screen.dart';
-import 'package:virtual_store_flutter_app/screens/login_screen.dart';
-import 'package:virtual_store_flutter_app/screens/signup_screen.dart';
 
 void main (){
   runApp(MyApp());
