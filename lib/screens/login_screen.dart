@@ -6,10 +6,21 @@ import 'package:virtual_store_flutter_app/screens/signup_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passController = TextEditingController();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  BuildContext _context;
+
+  void setContext(BuildContext context){
+    this._context = context;
+  }
 
   @override
   Widget build(BuildContext context) {
+    setContext(context);
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text("Entrar"),
         centerTitle: true,
@@ -41,6 +52,7 @@ class LoginScreen extends StatelessWidget {
               padding: EdgeInsets.all(16),
               children: [
                 TextFormField(
+                  controller: _emailController,
                   decoration: InputDecoration(
                     hintText: "E-mail",
                   ),
@@ -54,6 +66,7 @@ class LoginScreen extends StatelessWidget {
                   height: 16,
                 ),
                 TextFormField(
+                  controller: _passController,
                   decoration: InputDecoration(
                     hintText: "Senha",
                   ),
@@ -84,7 +97,11 @@ class LoginScreen extends StatelessWidget {
                       if(_formKey.currentState.validate()){
 
                       }
-                      model.signIn();
+                      model.signIn(
+                          email: _emailController.text,
+                          pass: _passController.text,
+                          onSuccess: _onSuccess,
+                          onFail: _onFail);
                     },
                     child: Text(
                       "Entrar",
@@ -102,5 +119,24 @@ class LoginScreen extends StatelessWidget {
         },
       )
     );
+
   }
+
+  void _onSuccess( )  {
+        Navigator.of(this._context).pop();
+  }
+
+  void _onFail() {
+    _scaffoldKey.currentState.showSnackBar(
+        SnackBar(
+          content: Text("Falha ao autenticar usuário!"),
+          backgroundColor: Colors.redAccent,
+          duration: Duration( seconds: 2 ),
+        )
+    );
+    Future.delayed(Duration( seconds: 2)).then((_){
+      Navigator.of(_).pop();
+    });
+  }
+
 }
