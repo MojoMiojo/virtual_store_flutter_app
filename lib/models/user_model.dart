@@ -12,6 +12,10 @@ class UserModel extends Model {
 
   bool isLoading = false;
 
+  void recoverPass({@required String email}){
+    _auth.sendPasswordResetEmail(email: email);
+  }
+
   @override
   void addListener(VoidCallback listener) {
     super.addListener(listener);
@@ -78,8 +82,6 @@ class UserModel extends Model {
     firebaseUser = null;
     notifyListeners();
   }
-
-  void recoverPass() {}
 
   bool isLoggedIn() {
     return firebaseUser != null;
