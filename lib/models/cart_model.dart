@@ -6,6 +6,7 @@ import 'package:virtual_store_flutter_app/models/user_model.dart';
 
 class CartModel extends Model{
   UserModel user;
+  bool isLoading = false;
 
   CartModel(this.user);
 
