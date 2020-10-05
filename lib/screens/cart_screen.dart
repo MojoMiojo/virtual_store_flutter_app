@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:virtual_store_flutter_app/models/cart_model.dart';
 import 'package:virtual_store_flutter_app/models/user_model.dart';
+import 'package:virtual_store_flutter_app/tiles/cart_tile.dart';
 
 import 'login_screen.dart';
 
@@ -77,13 +78,12 @@ class CartScreen extends StatelessWidget {
             return ListView(
               children: [
                 Column(
-                  children: model.products.map(
-                      (product){
-                        return CartTile(product);
-                      })
+                  children: model.products.map((product){
+                    return CartTile(product);
+                  }).toList(),
                 )
               ],
-            )
+            );
           }
         }
       ),
