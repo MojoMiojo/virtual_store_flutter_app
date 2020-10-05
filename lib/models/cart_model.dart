@@ -21,6 +21,27 @@ class CartModel extends Model{
   static CartModel of(BuildContext context) =>
       ScopedModel.of<CartModel>(context);
 
+  void updatePrices(){
+    notifyListeners();
+  }
+
+  double getProductsPrice(){
+    double price = 0;
+    for(CartProduct c in products){
+      if(c.productData != null)
+        price += c.quantity * c.productData.price;
+    }
+    return price;
+  }//end getProductsPrice
+
+  double getShipPrice(){
+    return 9.99;
+  }
+
+  double getDiscount(){
+    return getProductsPrice() * discountPercentage / 100;
+  }
+
   void setCupom(String cuponCode, int percent){
     this.cupomCode = cuponCode;
     this.discountPercentage = percent;
