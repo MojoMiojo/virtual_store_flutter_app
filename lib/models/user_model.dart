@@ -12,6 +12,9 @@ class UserModel extends Model {
 
   bool isLoading = false;
 
+  static UserModel of(BuildContext context) =>
+      ScopedModel.of<UserModel>(context);
+
   void recoverPass({@required String email}){
     _auth.sendPasswordResetEmail(email: email);
   }
