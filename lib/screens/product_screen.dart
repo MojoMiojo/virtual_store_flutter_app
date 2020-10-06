@@ -124,36 +124,39 @@ class _ProductScreenState extends State<ProductScreen> {
                 SizedBox(
                   height: 44,
                   child: RaisedButton(
-                    onPressed: size != null ? () {
-                      if(UserModel.of(context).isLoggedIn()){
-                        CartProduct cartProduct = CartProduct();
+                    onPressed: size != null
+                        ? () {
+                            if (UserModel.of(context).isLoggedIn()) {
+                              CartProduct cartProduct = CartProduct();
 
-                        cartProduct.size = size;
-                        cartProduct.quantity = 1;
-                        cartProduct.pid = product.id;
-                        cartProduct.category = product.category;
+                              cartProduct.size = size;
+                              cartProduct.quantity = 1;
+                              cartProduct.pid = product.id;
+                              cartProduct.category = product.category;
+                              cartProduct.productData = product;
 
-                        CartModel.of(context).addCartItem(cartProduct);
-                        Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) =>CartScreen())
-                        );
-                      }else{
-                        Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) =>LoginScreen())
-                        );
-                      }
-                    } : null,
-                    child: UserModel.of(context).isLoggedIn() ? Text(
-                      "Adicionar ao Carrinho",
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
-                    ) : Text(
-                      "Entre para comprar",
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
-                    ),
+                              CartModel.of(context).addCartItem(cartProduct);
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => CartScreen()));
+                            } else {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => LoginScreen()));
+                            }
+                          }
+                        : null,
+                    child: UserModel.of(context).isLoggedIn()
+                        ? Text(
+                            "Adicionar ao Carrinho",
+                            style: TextStyle(
+                              fontSize: 18,
+                            ),
+                          )
+                        : Text(
+                            "Entre para comprar",
+                            style: TextStyle(
+                              fontSize: 18,
+                            ),
+                          ),
                     color: primaryColor,
                     textColor: Colors.white,
                   ),
